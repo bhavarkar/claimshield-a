@@ -1,0 +1,4 @@
+procedure_key,family,max_expected_tier,expected_code,rationale
+appendectomy,ANS-GA,2,ANS-GA-2,Uncomplicated laparoscopic appendectomy is typically performed under standard general anaesthesia (Grade II)
+knee replacement,ANS-GA,3,ANS-GA-3,Joint replacement may warrant up to Grade III general anaesthesia
+cataract,ANS-GA,2,ANS-GA-2,Cataract surgery is usually done under local anaesthesia; general anaesthesia above Grade II is atypical

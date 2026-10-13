@@ -1,0 +1,60 @@
+{
+  "policies": {
+    "POLICY-GOLD": {
+      "file": "policies/suraksha_health_gold.pdf",
+      "plan": "Suraksha Health Gold",
+      "insurer": "Bharat Shield General Insurance Ltd. (fictional)"
+    },
+    "POLICY-SILVER": {
+      "file": "policies/carefirst_family_silver.pdf",
+      "plan": "CareFirst Family Floater Silver",
+      "insurer": "Navodaya Assurance Company Ltd. (fictional)"
+    }
+  },
+  "bills": {
+    "BILL-001": {
+      "file": "bills/bill_001_sunrise_appendectomy.pdf",
+      "policy": "POLICY-GOLD",
+      "hospital": "Sunrise Multispeciality Hospital",
+      "procedure": "Laparoscopic appendectomy",
+      "patient": "Rohan Mehta",
+      "gross": 122530,
+      "insurer_approved": 96784.0,
+      "patient_payable": 25746.0,
+      "clean": false
+    },
+    "BILL-002": {
+      "file": "bills/bill_002_netra_cataract.pdf",
+      "policy": "POLICY-GOLD",
+      "hospital": "Netra Eye Care Centre",
+      "procedure": "Cataract surgery (phacoemulsification with IOL), right eye",
+      "patient": "Sushila Rao",
+      "gross": 49850,
+      "insurer_approved": 35000.0,
+      "patient_payable": 14850.0,
+      "clean": false
+    },
+    "BILL-003": {
+      "file": "bills/bill_003_lotus_knee_replacement.pdf",
+      "policy": "POLICY-SILVER",
+      "hospital": "Lotus Orthopaedic Hospital",
+      "procedure": "Total knee replacement, left",
+      "patient": "Farhan Qureshi",
+      "gross": 234500,
+      "insurer_approved": 80000.0,
+      "patient_payable": 154500.0,
+      "clean": false
+    },
+    "BILL-004": {
+      "file": "bills/bill_004_sanjeevani_dengue_clean.pdf",
+      "policy": "POLICY-SILVER",
+      "hospital": "Sanjeevani Hospital",
+      "procedure": "Medical management (no surgery)",
+      "patient": "Kavya Iyer",
+      "gross": 13480,
+      "insurer_approved": 10264.0,
+      "patient_payable": 3216.0,
+      "clean": true
+    }
+  }
+}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ClaimShield AI - hospital bill & claim auditor</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2 4 7v8c0 7.5 5.1 13.4 12 15 6.9-1.6 12-7.5 12-15V7z' fill='%230f766e'/></svg>">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 4 7v8c0 7.5 5.1 13.4 12 15 6.9-1.6 12-7.5 12-15V7z" fill="currentColor"/><path d="m10.5 16.2 3.8 3.8 7.4-8" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <h1>ClaimShield AI</h1>
+        <p>Your hospital bill, audited against your policy, on your side.</p>
+      </div>
+    </div>
+    <div id="stack" class="stack" aria-label="Services in use"></div>
+  </header>
+
+  <main>
+    <section id="start" class="panel">
+      <h2>1. Upload a hospital bill and your insurance policy</h2>
+      <div class="uploads">
+        <label class="drop" id="drop-bill">
+          <input type="file" id="file-bill" accept="application/pdf">
+          <span class="drop-title">Hospital bill (PDF)</span>
+          <span class="drop-hint" id="hint-bill">Itemised final bill with the insurer settlement</span>
+        </label>
+        <label class="drop" id="drop-policy">
+          <input type="file" id="file-policy" accept="application/pdf">
+          <span class="drop-title">Insurance policy (PDF)</span>
+          <span class="drop-hint" id="hint-policy">Policy wording with schedule and clauses</span>
+        </label>
+      </div>
+      <div class="or"><span>or try a synthetic case</span></div>
+      <div id="samples" class="samples"></div>
+      <div class="actions">
+        <button id="audit" class="primary" disabled>Audit</button>
+        <span id="selection" class="muted">Choose a bill and a policy, or pick a sample case.</span>
+      </div>
+    </section>
+
+    <section id="run" class="panel hidden">
+      <div class="run-head">
+        <h2>2. Agents at work</h2>
+        <span id="case-id" class="muted mono"></span>
+      </div>
+      <div class="pipeline" id="pipeline">
+        <div class="agent" data-agent="intake_agent"><b>Intake</b><small>Document AI parsing</small></div>
+        <div class="arrow"></div>
+        <div class="agent" data-agent="policy_agent"><b>Policy</b><small>Clause retrieval</small></div>
+        <div class="arrow"></div>
+        <div class="parallel">
+          <div class="agent" data-agent="audit_agent"><b>Audit</b><small>Errors & coverage</small></div>
+          <div class="agent" data-agent="benchmark_agent"><b>Benchmark</b><small>Pricing & coding</small></div>
+        </div>
+        <div class="arrow"></div>
+        <div class="agent" data-agent="reconciliation_agent"><b>Reconciliation</b><small>What you owe</small></div>
+        <div class="arrow"></div>
+        <div class="agent" data-agent="dispute_agent"><b>Dispute</b><small>Letters & report</small></div>
+      </div>
+      <ol id="log" class="log" aria-live="polite"></ol>
+    </section>
+
+    <section id="results" class="hidden">
+      <div class="panel">
+        <h2>3. What we found</h2>
+        <div id="verdict" class="verdict"></div>
+        <div id="summary" class="summary"></div>
+        <div id="notes"></div>
+      </div>
+
+      <div class="panel" id="findings-panel">
+        <div class="panel-head">
+          <h3>Findings</h3>
+          <div class="legend"><span class="pill high">High</span> follows from the bill's own figures or the policy wording &nbsp; <span class="pill review">Worth reviewing</span> may have a legitimate reason, so ask</div>
+        </div>
+        <table class="findings">
+          <thead><tr><th>#</th><th>Finding</th><th>Bill line</th><th>Policy clause</th><th>Confidence</th><th class="num">Amount</th></tr></thead>
+          <tbody id="findings"></tbody>
+        </table>
+      </div>
+
+      <div class="grid2">
+        <div class="panel">
+          <h3>Itemised bill</h3>
+          <p class="muted small" id="bill-meta"></p>
+          <div class="scroll"><table class="bill"><thead><tr><th>#</th><th>Date</th><th>Description</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">Amount</th></tr></thead><tbody id="bill-lines"></tbody></table></div>
+        </div>
+        <div class="panel">
+          <h3>How your entitlement was calculated</h3>
+          <p class="muted small">Policy terms applied to the bill after the high-confidence corrections.</p>
+          <table class="calc"><tbody id="calc"></tbody></table>
+          <h3 class="mt">Policy terms used</h3>
+          <ul id="terms" class="terms"></ul>
+        </div>
+      </div>
+
+      <div class="panel" id="letters-panel">
+        <div class="panel-head">
+          <h3>Ready-to-send letters & report</h3>
+          <div id="downloads" class="downloads"></div>
+        </div>
+        <div id="letter-tabs" class="tabs"></div>
+        <pre id="letter" class="letter"></pre>
+      </div>
+
+      <div class="actions center"><button id="again" class="secondary">Audit another bill</button></div>
+    </section>
+  </main>
+
+  <footer>
+    ClaimShield AI flags items <em>worth disputing</em>. It does not give legal advice or allege fraud.
+    The demo bills, policies, people and hospitals are synthetic.
+  </footer>
+  <script src="/app.js"></script>
+</body>
+</html>

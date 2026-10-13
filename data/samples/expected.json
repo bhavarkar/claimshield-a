@@ -1,0 +1,103 @@
+{
+  "BILL-001": {
+    "policy": "POLICY-GOLD",
+    "findings": [
+      {
+        "type": "DUPLICATE_CHARGE",
+        "lines": [
+          3,
+          4
+        ],
+        "confidence": "High"
+      },
+      {
+        "type": "ARITHMETIC_ERROR",
+        "lines": [
+          9
+        ],
+        "confidence": "High"
+      },
+      {
+        "type": "UPCODING_SIGNAL",
+        "lines": [
+          8
+        ],
+        "confidence": "Worth reviewing"
+      },
+      {
+        "type": "COVERAGE_MISMATCH",
+        "lines": [
+          12
+        ],
+        "confidence": "High",
+        "topic": "non_medical"
+      },
+      {
+        "type": "COVERAGE_MISMATCH",
+        "lines": [],
+        "confidence": "High",
+        "topic": "copay"
+      }
+    ]
+  },
+  "BILL-002": {
+    "policy": "POLICY-GOLD",
+    "findings": [
+      {
+        "type": "ARITHMETIC_ERROR",
+        "lines": [
+          7
+        ],
+        "confidence": "High"
+      },
+      {
+        "type": "TOTAL_MISMATCH",
+        "lines": [],
+        "confidence": "High"
+      },
+      {
+        "type": "COVERAGE_MISMATCH",
+        "lines": [],
+        "confidence": "High",
+        "topic": "sub_limit"
+      }
+    ]
+  },
+  "BILL-003": {
+    "policy": "POLICY-SILVER",
+    "findings": [
+      {
+        "type": "QUANTITY_MISMATCH",
+        "lines": [
+          1
+        ],
+        "confidence": "High"
+      },
+      {
+        "type": "DUPLICATE_CHARGE",
+        "lines": [
+          11,
+          12
+        ],
+        "confidence": "Worth reviewing"
+      },
+      {
+        "type": "PRICE_OUTLIER",
+        "lines": [
+          3
+        ],
+        "confidence": "Worth reviewing"
+      },
+      {
+        "type": "COVERAGE_MISMATCH",
+        "lines": [],
+        "confidence": "High",
+        "topic": "sub_limit"
+      }
+    ]
+  },
+  "BILL-004": {
+    "policy": "POLICY-SILVER",
+    "findings": []
+  }
+}
