@@ -195,8 +195,9 @@ def case(case_id: str) -> JSONResponse:
     keep = ("case_id", "status", "error", "bill", "policy_doc", "policy_terms", "findings", "reconciliation", "letters", "stack", "bill_name", "policy_name")
     out = {k: c.get(k) for k in keep if k in c}
     out["files"] = {name: f"/api/cases/{case_id}/files/{name}" for name, key in ARTIFACT_FILES.items() if key in c.get("artifacts", {})}
-    if out.get("bill"):
-        out["bill"].pop("parser", None)
+    if isinstance(out.get("bill"), dict):
+        # Do not mutate the stored case: responses must be read-only snapshots.
+        out["bill"] = {key: value for key, value in out["bill"].items() if key != "parser"}
     return JSONResponse(out)
 
 
