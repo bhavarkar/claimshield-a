@@ -79,3 +79,18 @@ def test_gemini_explanation_falls_back_when_numbers_drift() -> None:
 
 def test_amount_parser() -> None:
     assert amounts_in("₹1,22,530 and Rs. 450 and INR 3,000.50") == {122530, 450, 3000}
+
+
+def test_case_response_does_not_mutate_stored_bill(monkeypatch) -> None:
+    from claimshield.api import main
+
+    case_id = "case-regression-1234"
+    stored = {"case_id": case_id, "status": "complete", "bill": {"parser": "local", "bill_number": "B1"}}
+    monkeypatch.setitem(main.CASES, case_id, stored)
+    with TestClient(app) as client:
+        first = client.get(f"/api/cases/{case_id}")
+        second = client.get(f"/api/cases/{case_id}")
+    assert first.status_code == second.status_code == 200
+    assert "parser" not in first.json()["bill"]
+    assert "parser" not in second.json()["bill"]
+    assert stored["bill"]["parser"] == "local"
